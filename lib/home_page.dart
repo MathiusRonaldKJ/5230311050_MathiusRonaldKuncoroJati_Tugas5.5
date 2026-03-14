@@ -565,132 +565,130 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // BAGIAN PROMO 
-  Widget _buildPromoSection() {
-    final List<Map<String, dynamic>> promos = [
-      {
-        'title': 'Bus',
-        'discount': '25%',
-        'color': purpleAccent,
-        'icon': Icons.directions_bus,
-      },
-      {
-        'title': 'Minibus',
-        'discount': '15%',
-        'color': greenAccent,
-        'icon': Icons.airport_shuttle,
-      },
-      {
-        'title': 'MPV',
-        'discount': '20%',
-        'color': orangeAccent,
-        'icon': Icons.car_rental,
-      },
-    ];
+// BAGIAN PROMO - SOLUSI PALING STABIL
+Widget _buildPromoSection() {
+  final List<Map<String, dynamic>> promos = [
+    {
+      'title': 'Bus',
+      'discount': '25%',
+      'color': purpleAccent,
+      'icon': Icons.directions_bus,
+    },
+    {
+      'title': 'Minibus',
+      'discount': '15%',
+      'color': greenAccent,
+      'icon': Icons.airport_shuttle,
+    },
+    {
+      'title': 'MPV',
+      'discount': '20%',
+      'color': orangeAccent,
+      'icon': Icons.car_rental,
+    },
+  ];
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: greenAccent.withOpacity(0.1),
-                  shape: BoxShape.circle,
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: greenAccent.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.card_giftcard,
+                color: greenAccent,
+                size: 16,
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Text(
+              'Promo',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: darkText,
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: promos.map((promo) {
+            return Container(
+              width: 160, 
+              height: 100, 
+              margin: const EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    promo['color'] as Color,
+                    (promo['color'] as Color).withOpacity(0.7),
+                  ],
                 ),
-                child: Icon(
-                  Icons.card_giftcard,
-                  color: greenAccent,
-                  size: 16,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            promo['title'],
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${promo['discount']}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        promo['icon'],
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(width: 8),
-              const Text(
-                'Promo',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: darkText,
-                ),
-              ),
-            ],
-          ),
+            );
+          }).toList(),
         ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 100,
-          child: GridView.count(
-            scrollDirection: Axis.horizontal,
-            crossAxisCount: 1,
-            childAspectRatio: 1.6, 
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            children: promos.map((promo) {
-              return Container(
-                width: 160,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      promo['color'] as Color,
-                      (promo['color'] as Color).withOpacity(0.7),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              promo['title'],
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              '${promo['discount']}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          promo['icon'],
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
 
   void _showCarDetails(BuildContext context, Car car) {
     showModalBottomSheet(

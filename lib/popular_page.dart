@@ -509,7 +509,11 @@ class PopularPage extends StatelessWidget {
                     ),
                     child: const Text(
                       'Sewa',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 14, 
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white, // WARNA PUTIH DITAMBAHKAN
+                      ),
                     ),
                   ),
                 ],
